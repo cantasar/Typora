@@ -1,7 +1,10 @@
-require('dotenv').config(); // .env dosyasını yükler
+require('dotenv').config();
 const fastify = require('fastify')();
+fastify.register(require('./routes/auth.js'));
 
 const PORT = process.env.PORT || 3000;
+
+fastify.register(require('./routes/auth.js'), { prefix: '/auth' });
 
 fastify.get('/', async (request, reply) => {
   return { message: 'Welcome to Typora API (Node.js)' };
