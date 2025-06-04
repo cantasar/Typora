@@ -7,10 +7,10 @@ services:
       dockerfile: docker/backend.Dockerfile
     ports:
       - "${PORT}:${PORT}"
-    volumes:
-      - ./apps/backend:/app
     env_file:
       - .env
+    volumes:
+      - ./apps/backend/prisma:/app/prisma
 
   # frontend:
   #   build:

@@ -13,10 +13,11 @@ function findById(id) {
   });
 }
 
-function createUser({ name, email, password }) {
+function createUser({ name, username, email, password }) {
   return prisma.user.create({
     data: {
       name,
+      username,
       email,
       password,
     },
@@ -33,9 +34,52 @@ function updateUser(id, { name, email }) {
   });
 }
 
+async function getPostBySlugAndUsername(username, slug) {
+  return prisma.post.findFirst({
+    where: {
+      slug,
+      author: {
+        username: username,
+      },
+    },
+    include: {
+      author: {
+        select: {
+          id: true,
+          name: true,
+          username: true,
+        },
+      },
+    },
+  });
+}
+
+async function findByUsernameWithPosts(username) {
+  return prisma.user.findFirst({
+    where: {
+      username,
+    },
+    include: {
+      posts: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          createdAt: true,
+        },
+      },
+    },
+  });
+}
+
 module.exports = {
   findByEmail,
   findById,
   createUser,
   updateUser,
+  getPostBySlugAndUsername,
+  findByUsernameWithPosts,
 };

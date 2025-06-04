@@ -4,7 +4,8 @@ const fastify = require('fastify')();
 const PORT = process.env.PORT || 3000;
 
 fastify.register(require('./routes/auth'), { prefix: '/auth' });
-fastify.register(require('./routes/user'), { prefix: '/auth' });
+fastify.register(require('./routes/post'));
+fastify.register(require('./routes/user'));
 
 fastify.get('/', async (request, reply) => {
   return { message: 'Welcome to Typora API (Node.js)' };

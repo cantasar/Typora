@@ -3,11 +3,10 @@ const userService = require('../services/userService');
 
 const register = async (request, reply) => {
   try {
-    const { name, email, password } = request.body;
+    const { name, username, email, password } = request.body;
 
-    // 1. Zorunlu alanları kontrol et
-    if (!name || !email || !password) {
-      return reply.status(400).send({ error: 'Name, email, and password are required.' });
+    if (!name || !username || !email || !password) {
+      return reply.status(400).send({ error: 'All fields are required' });
     }
 
     // 2. Email zaten kayıtlı mı?
@@ -22,6 +21,7 @@ const register = async (request, reply) => {
     // 4. Yeni kullanıcı oluştur
     const newUser = await userService.createUser({
       name,
+      username,
       email,
       password: hashedPassword,
     });
