@@ -6,19 +6,19 @@ services:
       context: .
       dockerfile: docker/backend.Dockerfile
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     volumes:
       - ./apps/backend:/app
     env_file:
       - .env
 
-  frontend:
-    build:
-      context: .
-      dockerfile: docker/frontend.Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./apps/frontend:/app
-    env_file:
-      - .env
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/frontend.Dockerfile
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./apps/frontend:/app
+  #   env_file:
+  #     - .env
