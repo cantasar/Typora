@@ -1,8 +1,11 @@
 const authController = require('../controllers/authController');
 
 async function authRoutes(fastify, options) {
-  // Kullanıcı kaydı için route tanımı
+
   fastify.post('/register', authController.register);
+
+  fastify.post('/login', authController.login);
+
 }
 
 module.exports = authRoutes;
