@@ -1,5 +1,7 @@
 const postService = require('../services/postService');
 const slugify = require('../utils/slugify');
+const prisma = require('../lib/prisma'); // ✅ bu olmalı
+
 
 const createPost = async (request, reply) => {
   try {
@@ -26,15 +28,21 @@ const createPost = async (request, reply) => {
   }
 };
 
-const getFeed = async (request, reply) => {
-  try {
-    const posts = await postService.getFeed();
-    reply.send(posts);
-  } catch (err) {
-    console.error('GET /feed error:', err);
-    reply.status(500).send({ error: 'Internal Server Error' });
-  }
-};
+
+async function getFeed() {
+  return await prisma.post.findMany({
+    orderBy: { createdAt: 'desc' },
+    include: {
+      author: {
+        select: {
+          username: true,
+          name: true
+        }
+      }
+    }
+  });
+}
+
 
 const getPostBySlugAndUsername = async (request, reply) => {
   try {

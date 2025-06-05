@@ -9,7 +9,7 @@ function postRoutes(fastify, options) {
   fastify.get('/feed', postController.getFeed);
 
   // Slug ve username ile yazı detayını getir
-  fastify.get('/:username/:slug', postController.getPostBySlugAndUsername);
+  fastify.get('/posts/:username/:slug', postController.getPostBySlugAndUsername);
 }
 
 module.exports = postRoutes;

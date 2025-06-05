@@ -24,12 +24,13 @@ function createUser({ name, username, email, password }) {
   });
 }
 
-function updateUser(id, { name, email }) {
+function updateUser(id, { name, email, username }) {
   return prisma.user.update({
     where: { id },
     data: {
       name,
       email,
+      username,
     },
   });
 }

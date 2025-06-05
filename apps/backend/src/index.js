@@ -1,5 +1,13 @@
 require('dotenv').config();
 const fastify = require('fastify')();
+const cors = require('@fastify/cors');
+
+fastify.register(cors, {
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
+  credentials: true
+});
 
 const PORT = process.env.PORT || 3000;
 

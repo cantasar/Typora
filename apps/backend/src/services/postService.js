@@ -37,11 +37,17 @@ async function getPostBySlugAndUsername(username, slug) {
     where: {
       slug,
       author: {
-        name: username,
+        username: username,
       },
     },
     include: {
-      author: true,
+      author: {
+        select: {
+          id: true,
+          name: true,
+          username: true,
+        },
+      },
     },
   });
 }
