@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login - Typora</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="../scripts/auth.ts"></script>
+  <script type="module">
+    import { redirectIfLoggedIn } from '../scripts/utils/authGuard';
+  
+    redirectIfLoggedIn();
+  </script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <form id="loginForm" class="bg-white p-6 rounded shadow-md w-80">
+      <h2 class="text-xl font-semibold mb-4">Login</h2>
+
+      <label class="block mb-2">
+        <span class="text-sm text-gray-700">Email</span>
+        <input type="email" name="email" class="mt-1 w-full px-3 py-2 border rounded" required />
+      </label>
+
+      <label class="block mb-4">
+        <span class="text-sm text-gray-700">Password</span>
+        <input type="password" name="password" class="mt-1 w-full px-3 py-2 border rounded" required />
+      </label>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Login
+      </button>
+    </form>
+  </body>
+</html>

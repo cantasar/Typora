@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Feed - Typora</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="../scripts/feed.ts"></script>
+    <script type="module" >
+      import { redirectIfNotLoggedIn } from '../scripts/utils/authGuard';
+      redirectIfNotLoggedIn();
+    </script>
+  </head>
+  <body class="bg-gray-100 min-h-screen p-6">
+    <h1 class="text-3xl font-bold mb-6">📝 Latest Posts</h1>
+    <div id="feed" class="space-y-4"></div>
+  </body>
+</html>
