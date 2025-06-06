@@ -2,15 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Read Post - Typora</title>
+    <title>Story - Medium</title>
     <link rel="stylesheet" href="../style.css" />
     <script type="module" src="../scripts/readPost.ts"></script>
   </head>
-  <body class="bg-gray-100 min-h-screen p-6">
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-      <h1 id="post-title" class="text-3xl font-bold mb-4">Loading...</h1>
-      <p id="post-content" class="text-gray-800 whitespace-pre-line mb-6"></p>
-      <p id="post-author" class="text-sm text-gray-600"></p>
-    </div>
+  <body class="bg-white min-h-screen">
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('../components/header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <article class="max-w-screen-md mx-auto pt-24 px-4">
+      <h1 id="post-title" class="text-4xl font-title font-bold mb-6 text-medium-dark">Loading...</h1>
+      
+      <div class="flex items-center gap-4 mb-8 border-b border-medium-border pb-8">
+        <div class="w-12 h-12 rounded-full bg-medium-green text-white flex items-center justify-center font-medium text-xl" id="author-avatar"></div>
+        <div>
+          <p id="post-author" class="font-semibold mb-1"></p>
+          <p class="text-medium-gray text-sm" id="post-date"></p>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p id="post-content" class="text-xl leading-relaxed text-medium-dark font-serif whitespace-pre-line"></p>
+      </div>
+    </article>
+
+    <script>
+      // Update author avatar when post loads
+      document.addEventListener('post-loaded', () => {
+        const authorText = document.getElementById('post-author').textContent;
+        const authorName = authorText.replace('by @', '');
+        document.getElementById('author-avatar').textContent = authorName.charAt(0).toUpperCase();
+        
+        // Add post date
+        const date = new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+        document.getElementById('post-date').textContent = date;
+      });
+    </script>
   </body>
 </html>

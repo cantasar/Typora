@@ -2,16 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Feed - Typora</title>
+    <title>Medium – Where good ideas find you.</title>
     <link rel="stylesheet" href="../style.css" />
     <script type="module" src="../scripts/feed.ts"></script>
-    <script type="module" >
+    <script type="module">
       import { redirectIfNotLoggedIn } from '../scripts/utils/authGuard';
       redirectIfNotLoggedIn();
     </script>
   </head>
-  <body class="bg-gray-100 min-h-screen p-6">
-    <h1 class="text-3xl font-bold mb-6">📝 Latest Posts</h1>
-    <div id="feed" class="space-y-4"></div>
+  <body class="bg-white min-h-screen">
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('../components/header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <main class="max-w-screen-xl mx-auto pt-20 px-4">
+      <div class="flex gap-8">
+        <div class="w-full lg:w-2/3">
+          <h1 class="text-3xl font-title font-bold text-medium-dark mb-8">For you</h1>
+          <div id="feed" class="space-y-8"></div>
+        </div>
+
+        <aside class="hidden lg:block w-1/3 p-6 bg-medium-light rounded-lg h-fit sticky top-24">
+          <h2 class="font-title font-bold mb-4">Staff Picks</h2>
+          <p class="text-medium-gray text-sm">Discover stories selected by Medium staff.</p>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Update the feed rendering in feed.ts
+      document.addEventListener('feed-loaded', () => {
+        const posts = document.querySelectorAll('#feed > div');
+        posts.forEach(post => {
+          post.className = "flex flex-col gap-4 pb-8 border-b border-medium-border";
+          const title = post.querySelector('h2');
+          const content = post.querySelector('p');
+          const authorLink = post.querySelector('a');
+          
+          if (title && content && authorLink) {
+            title.className = "text-xl font-bold font-title hover:text-medium-green cursor-pointer";
+            content.className = "text-medium-gray line-clamp-3";
+            authorLink.className = "text-medium-gray hover:text-medium-dark text-sm";
+          }
+        });
+      });
+    </script>
   </body>
 </html>

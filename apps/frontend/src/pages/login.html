@@ -1,35 +1,73 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Login - Typora</title>
+    <title>Sign In - Medium</title>
     <link rel="stylesheet" href="../style.css" />
     <script type="module" src="../scripts/auth.ts"></script>
-  <script type="module">
-    import { redirectIfLoggedIn } from '../scripts/utils/authGuard';
-  
-    redirectIfLoggedIn();
-  </script>
+    <script type="module" src="../scripts/login.ts"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <form id="loginForm" class="bg-white p-6 rounded shadow-md w-80">
-      <h2 class="text-xl font-semibold mb-4">Login</h2>
+  <body class="bg-white min-h-screen flex flex-col items-center pt-24">
+    <a href="/src/pages/feed.html" class="mb-12">
+      <h1 class="text-medium-dark font-title text-3xl font-bold">Medium</h1>
+    </a>
 
-      <label class="block mb-2">
-        <span class="text-sm text-gray-700">Email</span>
-        <input type="email" name="email" class="mt-1 w-full px-3 py-2 border rounded" required />
-      </label>
+    <div class="w-[400px] max-w-full px-4">
+      <h2 class="text-3xl font-title font-bold text-medium-dark mb-8 text-center">Welcome back</h2>
 
-      <label class="block mb-4">
-        <span class="text-sm text-gray-700">Password</span>
-        <input type="password" name="password" class="mt-1 w-full px-3 py-2 border rounded" required />
-      </label>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            class="w-full px-4 py-3 border border-medium-border rounded-sm focus:outline-none focus:ring-1 focus:ring-medium-dark"
+            required 
+          />
+        </div>
 
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-        Login
-      </button>
-    </form>
+        <div>
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            class="w-full px-4 py-3 border border-medium-border rounded-sm focus:outline-none focus:ring-1 focus:ring-medium-dark"
+            required 
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full bg-medium-dark text-white py-2 px-4 rounded-full hover:bg-black transition-colors font-title"
+        >
+          Sign in
+        </button>
+
+        <!-- Google Identity Services -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+        <!-- Sayfanın bir yerine ekle -->
+        <div id="g_id_onload"
+            data-client_id="1030213252967-4llsg7j46r2p7oj2n0ta7ljkdfd8p1be.apps.googleusercontent.com"
+            data-callback="handleGoogleSignIn"
+            data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="sign_in_with"
+            data-shape="rectangular"
+            data-logo_alignment="left">
+        </div>
+
+        <p class="text-center text-medium-gray text-sm mt-6">
+          No account?
+          <a href="/src/pages/register.html" class="text-medium-green hover:text-medium-dark">Create one</a>
+        </p>
+      </form>
+    </div>
   </body>
 </html>

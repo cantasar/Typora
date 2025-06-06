@@ -2,36 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Edit Profile - Typora</title>
+    <title>Edit Profile - Medium</title>
     <link rel="stylesheet" href="../style.css" />
     <script type="module" src="../scripts/editProfile.ts"></script>
-	<script type="module" >
+    <script type="module">
       import { redirectIfNotLoggedIn } from '../scripts/utils/authGuard';
       redirectIfNotLoggedIn();
     </script>
   </head>
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <form id="editForm" class="bg-white p-6 rounded shadow-md w-96">
-      <h2 class="text-xl font-semibold mb-4">👤 Edit Profile</h2>
+  <body class="bg-white min-h-screen">
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('../components/header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
 
-      <label class="block mb-2">
-        <span class="text-sm text-gray-700">Name</span>
-        <input type="text" name="name" class="mt-1 w-full px-3 py-2 border rounded" required />
-      </label>
+    <main class="max-w-screen-sm mx-auto pt-24 px-4">
+      <div class="mb-8">
+        <h1 class="text-3xl font-title font-bold text-medium-dark">Profile information</h1>
+        <p class="text-medium-gray mt-2">Update your photo and personal details here.</p>
+      </div>
 
-      <label class="block mb-2">
-        <span class="text-sm text-gray-700">Username</span>
-        <input type="text" name="username" class="mt-1 w-full px-3 py-2 border rounded" required />
-      </label>
+      <form id="editForm" class="space-y-6">
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-medium-dark">Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            class="w-full px-4 py-3 border border-medium-border rounded-sm focus:outline-none focus:ring-1 focus:ring-medium-dark" 
+            required 
+          />
+        </div>
 
-      <label class="block mb-4">
-        <span class="text-sm text-gray-700">Email</span>
-        <input type="email" name="email" class="mt-1 w-full px-3 py-2 border rounded" required />
-      </label>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-medium-dark">Username</label>
+          <input 
+            type="text" 
+            name="username" 
+            class="w-full px-4 py-3 border border-medium-border rounded-sm focus:outline-none focus:ring-1 focus:ring-medium-dark" 
+            required 
+          />
+        </div>
 
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-        Save Changes
-      </button>
-    </form>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-medium-dark">Email</label>
+          <input 
+            type="email" 
+            name="email" 
+            class="w-full px-4 py-3 border border-medium-border rounded-sm focus:outline-none focus:ring-1 focus:ring-medium-dark" 
+            required 
+          />
+        </div>
+
+        <div class="pt-4">
+          <button 
+            type="submit" 
+            class="bg-medium-green text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors font-title"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

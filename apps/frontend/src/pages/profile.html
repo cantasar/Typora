@@ -2,26 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Profile - Typora</title>
+    <title>Profile - Medium</title>
     <link rel="stylesheet" href="../style.css" />
     <script type="module" src="../scripts/profile.ts"></script>
-    <script type="module" >
+    <script type="module">
       import { redirectIfNotLoggedIn } from '../scripts/utils/authGuard';
       redirectIfNotLoggedIn();
     </script>
   </head>
-  <body class="bg-gray-100 min-h-screen p-6">
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-      <div id="profile-header" class="mb-6">
-        <h1 class="text-2xl font-bold" id="profile-name">Loading...</h1>
-        <p class="text-gray-600" id="profile-username"></p>
-        <button id="edit-btn" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hidden">Edit Profile</button>
+  <body class="bg-white min-h-screen">
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('../components/header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <main class="max-w-screen-md mx-auto pt-24 px-4">
+      <div class="border-b border-medium-border pb-8 mb-8">
+        <div class="flex items-center gap-6 mb-4">
+          <div class="w-24 h-24 rounded-full bg-medium-green text-white flex items-center justify-center text-4xl font-medium" id="profile-avatar"></div>
+          <div>
+            <h1 class="text-3xl font-title font-bold text-medium-dark mb-2" id="profile-name">Loading...</h1>
+            <p class="text-medium-gray" id="profile-username"></p>
+          </div>
+        </div>
+        
+        <button 
+          id="edit-btn" 
+          class="hidden px-4 py-1.5 border border-medium-dark rounded-full text-medium-dark hover:border-medium-green hover:text-medium-green transition-colors text-sm font-title"
+        >
+          Edit profile
+        </button>
       </div>
 
       <div>
-        <h2 class="text-xl font-semibold mb-4">📝 Posts</h2>
-        <div id="profile-posts" class="space-y-4"></div>
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-title font-bold text-medium-dark">Stories</h2>
+        </div>
+        <div id="profile-posts" class="space-y-6"></div>
       </div>
-    </div>
+    </main>
+
+    <script>
+      // Update avatar when profile loads
+      document.addEventListener('profile-loaded', () => {
+        const name = document.getElementById('profile-name').textContent;
+        document.getElementById('profile-avatar').textContent = name.charAt(0).toUpperCase();
+      });
+    </script>
   </body>
 </html>

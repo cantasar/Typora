@@ -4,10 +4,83 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>medium – Where good ideas find you.</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
-    <div id="app"></div>
+  <body class="bg-white">
+    <div id="app" class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="border-b border-medium-border py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
+          <a href="/" class="text-medium-dark font-title text-2xl font-bold">medium</a>
+          <nav class="flex items-center gap-4">
+            <a href="/src/pages/login.html" class="text-medium-gray hover:text-medium-dark">Sign in</a>
+            <a href="/src/pages/register.html" class="bg-medium-green text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">
+              Get started
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="flex-grow flex items-center">
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <div class="max-w-3xl">
+            <h1 class="text-6xl md:text-8xl font-title font-bold text-medium-dark mb-8">
+              Stay curious.
+            </h1>
+            <p class="text-xl md:text-2xl text-medium-gray mb-8 max-w-xl">
+              Discover stories, thinking, and expertise from writers on any topic.
+            </p>
+            <a href="/src/pages/register.html" class="inline-block bg-medium-dark text-white px-8 py-3 rounded-full text-xl hover:bg-black transition-colors">
+              Start reading
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trending Section -->
+      <section class="bg-medium-light py-16">
+        <div class="max-w-7xl mx-auto px-4">
+          <h2 class="text-medium-dark font-title text-xl mb-8 flex items-center gap-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+            Trending on medium
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="trending-posts">
+            <!-- Trending posts will be loaded here by JavaScript -->
+            <div class="flex gap-4 items-start">
+              <span class="text-3xl font-bold text-medium-gray/20">01</span>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-6 h-6 rounded-full bg-medium-green"></div>
+                  <span class="text-sm">Featured Author</span>
+                </div>
+                <h3 class="font-bold mb-2">Welcome to medium: A New Way to Share Ideas</h3>
+                <p class="text-medium-gray text-sm">Start your writing journey today</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-white py-8 border-t border-medium-border">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-medium-dark font-title text-xl font-bold">medium</div>
+            <nav class="flex gap-6 text-medium-gray">
+              <a href="#" class="hover:text-medium-dark">About</a>
+              <a href="#" class="hover:text-medium-dark">Help</a>
+              <a href="#" class="hover:text-medium-dark">Terms</a>
+              <a href="#" class="hover:text-medium-dark">Privacy</a>
+            </nav>
+          </div>
+        </div>
+      </footer>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
