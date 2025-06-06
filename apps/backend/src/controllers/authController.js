@@ -82,7 +82,65 @@ const login = async (request, reply) => {
   }
 };
 
+const { OAuth2Client } = require('google-auth-library');
+const prisma = require('../lib/prisma');
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+async function loginWithGoogle(request, reply) {
+  try {
+    const { idToken } = request.body;
+
+    if (!idToken) {
+      return reply.status(400).send({ error: 'Missing idToken' });
+    }
+
+    // Google idToken'ı doğrula
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    const email = payload.email;
+    const name = payload.name;
+    const googleId = payload.sub;
+
+    // Kullanıcı daha önce kaydolmuş mu?
+    let user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    // Yoksa oluştur
+    if (!user) {
+      const username = email.split('@')[0]; // basit username üretimi
+
+      user = await prisma.user.create({
+        data: {
+          name,
+          email,
+          username: username + Math.floor(Math.random() * 1000),
+          password: "GOOGLE_USER"
+        }
+      })};
+
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    reply.send({
+      token,
+      username: user.username,
+    });
+  } catch (err) {
+    console.error('Google login error:', err);
+    reply.status(500).send({ error: 'Internal Server Error' });
+  }
+}
+
 module.exports = {
   register,
-  login
+  login,
+  loginWithGoogle
 };

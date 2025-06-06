@@ -1,5 +1,5 @@
 const userService = require('../services/userService');
-const prisma = require('../lib/prisma'); // ✅ bu olmalı
+const prisma = require('../lib/prisma');
 
 
 const getMe = async (request, reply) => {

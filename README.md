@@ -8,14 +8,14 @@ A full-featured Medium-like blogging platform with complete user authentication,
 
 | Description        | Preview                                                                   |
 |--------------------|---------------------------------------------------------------------------|
-| Homepage UI        | <img src="readme_imgs/homepage.png" alt="Homepage UI" width="300"/>  |
-| Register           | <img src="readme_imgs/register.png" alt="Register" width="300"/>     |
-| Login              | <img src="readme_imgs/login.png" alt="Login" width="300"/>           |
-| Google Login       | <img src="readme_imgs/google_login.png" alt="Google Login" width="300"/> |
-| Profile Page       | <img src="readme_imgs/profile_page.png" alt="Profile Page" width="300"/> |
-| Profile Edit Page  | <img src="readme_imgs/profile_edit.png" alt="Profile Edit Page" width="300"/> |
-| Create Post        | <img src="readme_imgs/create_post.png" alt="Create Post" width="300"/> |
-| API Docs (Swagger) | <img src="readme_imgs/api_docs.png" alt="API Docs" width="300"/>     |
+| Homepage UI        | <img src="readme_imgs/homepage.png" alt="Homepage UI" width="500"/>  |
+| Register           | <img src="readme_imgs/register.png" alt="Register" width="500"/>     |
+| Login              | <img src="readme_imgs/login.png" alt="Login" width="500"/>           |
+| Google Login       | <img src="readme_imgs/google_login.png" alt="Google Login" width="500"/> |
+| Profile Page       | <img src="readme_imgs/profile_page.png" alt="Profile Page" width="500"/> |
+| Profile Edit Page  | <img src="readme_imgs/profile_edit.png" alt="Profile Edit Page" width="500"/> |
+| Create Post        | <img src="readme_imgs/create_post.png" alt="Create Post" width="500"/> |
+| API Docs (Swagger) | <img src="readme_imgs/api_docs.png" alt="API Docs" width="500"/>     |
 
 ---
 
@@ -117,7 +117,7 @@ Create the following files manually:
 
 #### `apps/backend/.env`
 ```
-PORT=3000
+PORT=5000
 JWT_SECRET=your_jwt_secret
 ```
 
@@ -151,7 +151,7 @@ docker compose up --build
 
 This will:
 - Build backend & frontend containers
-- Start Fastify on port 3000
+- Start Fastify on port 5000
 - Start frontend (Vite dev server) on port 5173
 - Auto-run Prisma migrations
 
@@ -188,7 +188,7 @@ docker compose restart frontend
 
 Available via Swagger when backend is running:
 
-📄 [`http://localhost:3000/docs`](http://localhost:3000/docs)
+📄 [`http://localhost:5000/docs`](http://localhost:5000/docs)
 
 > Future: Postman collection will be published.
 

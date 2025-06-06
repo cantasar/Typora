@@ -6,6 +6,8 @@ async function authRoutes(fastify, options) {
 
   fastify.post('/login', authController.login);
 
+  fastify.post('/google', authController.loginWithGoogle);
+
 }
 
 module.exports = authRoutes;

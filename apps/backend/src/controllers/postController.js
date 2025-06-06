@@ -1,6 +1,6 @@
 const postService = require('../services/postService');
 const slugify = require('../utils/slugify');
-const prisma = require('../lib/prisma'); // ✅ bu olmalı
+const prisma = require('../lib/prisma');
 
 
 const createPost = async (request, reply) => {
