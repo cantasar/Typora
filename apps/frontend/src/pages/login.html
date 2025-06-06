@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <title>Sign In - Medium</title>
     <link rel="stylesheet" href="../style.css" />
+    <script src="https://accounts.google.com/gsi/client"></script>
     <script type="module" src="../scripts/auth.ts"></script>
     <script type="module" src="../scripts/login.ts"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body class="bg-white min-h-screen flex flex-col items-center pt-24">
     <a href="/src/pages/feed.html" class="mb-12">
@@ -44,24 +44,8 @@
           Sign in
         </button>
 
-        <!-- Google Identity Services -->
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-        <!-- Sayfanın bir yerine ekle -->
-        <div id="g_id_onload"
-            data-client_id="1030213252967-4llsg7j46r2p7oj2n0ta7ljkdfd8p1be.apps.googleusercontent.com"
-            data-callback="handleGoogleSignIn"
-            data-auto_prompt="false">
-        </div>
-
-        <div class="g_id_signin"
-            data-type="standard"
-            data-size="large"
-            data-theme="outline"
-            data-text="sign_in_with"
-            data-shape="rectangular"
-            data-logo_alignment="left">
-        </div>
+        <!-- Google Sign In button container -->
+        <div id="g_id_signin" class="mt-4"></div>
 
         <p class="text-center text-medium-gray text-sm mt-6">
           No account?
