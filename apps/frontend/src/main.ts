@@ -1,4 +1,3 @@
-import './style.css'
 
 // Check if user is already logged in
 const token = localStorage.getItem('token');

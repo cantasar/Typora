@@ -1,5 +1,13 @@
 const API_URL = 'http://localhost:3000';
 
+import initializeHeader from './header';
+
+// Initialize header when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for the header HTML to be loaded
+  setTimeout(initializeHeader, 100);
+});
+
 const url = new URL(window.location.href);
 const username = url.searchParams.get('u');
 const slug = url.searchParams.get('s');

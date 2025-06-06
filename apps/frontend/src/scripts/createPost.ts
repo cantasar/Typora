@@ -1,6 +1,14 @@
 const API_URL = 'http://localhost:3000';
 const token = localStorage.getItem('token');
 
+import initializeHeader from './header';
+
+// Initialize header when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for the header HTML to be loaded
+  setTimeout(initializeHeader, 100);
+});
+
 const form = document.getElementById('postForm') as HTMLFormElement;
 
 form?.addEventListener('submit', async (e) => {

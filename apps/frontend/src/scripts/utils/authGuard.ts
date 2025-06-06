@@ -4,7 +4,7 @@ export function isLoggedIn(): boolean {
   return !!token;
 }
 
-// Login olmuşsa bu sayfaya erişmesin (örn. login.html, register.html)
+// Login olmuşsa bu sayfaya erişmesin
 export function redirectIfLoggedIn(): void {
   if (isLoggedIn()) {
     window.location.href = '/src/pages/feed.html';

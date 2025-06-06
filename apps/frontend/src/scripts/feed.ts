@@ -1,6 +1,14 @@
 const API_URL = "http://localhost:3000";
 const token = localStorage.getItem("token");
 
+import initializeHeader from './header';
+
+// Initialize header when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for the header HTML to be loaded
+  setTimeout(initializeHeader, 100);
+});
+
 async function loadFeed() {
   try {
     const res = await fetch(`${API_URL}/feed`, {
@@ -44,4 +52,6 @@ async function loadFeed() {
   }
 }
 
+
 loadFeed();
+
